@@ -8,7 +8,6 @@ Pod::Spec.new do |s|
   s.author       = { "Sebastien THIEBAUD" => "sthiebaud@icloud.com" }
   s.source       = { 
     :git => "https://github.com/twlopes/STTweetLabel.git", 
-    :tag => "2.2.1.1"
   }
 
   s.platform     = :ios

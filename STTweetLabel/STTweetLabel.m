@@ -257,9 +257,7 @@
 
                             if (repeat)
                             {
-                                if (matchNewLine.range.location < postCharacters.length) {
-                                    [[postCharacters substringToIndex:matchNewLine.range.location] drawAtPoint:CGPointMake(drawPoint.x + self.shadowOffset.width, drawPoint.y + self.shadowOffset.height) withFont:self.font];
-                                }
+                                [[postCharacters substringToIndex:matchNewLine.range.location] drawAtPoint:CGPointMake(drawPoint.x + self.shadowOffset.width, drawPoint.y + self.shadowOffset.height) withFont:self.font];
                             }
                         }
 
@@ -267,9 +265,7 @@
 
                         if (repeat)
                         {
-                            if (matchNewLine.range.location < postCharacters.length) {
-                                [[postCharacters substringToIndex:matchNewLine.range.location] drawAtPoint:drawPoint withFont:self.font];
-                            }
+                            [[postCharacters substringToIndex:matchNewLine.range.location] drawAtPoint:drawPoint withFont:self.font];
                         }
 
                         float originX = 0.0;
@@ -309,9 +305,7 @@
 
                             if (repeat)
                             {
-                                if (matchNewLine.range.location < postCharacters.length) {
-                                    [[postCharacters substringFromIndex:matchNewLine.range.location + matchNewLine.range.length] drawAtPoint:CGPointMake(drawPoint.x + self.shadowOffset.width, drawPoint.y + self.shadowOffset.height) withFont:self.font];
-                                }
+                                [[postCharacters substringFromIndex:matchNewLine.range.location + matchNewLine.range.length] drawAtPoint:CGPointMake(drawPoint.x + self.shadowOffset.width, drawPoint.y + self.shadowOffset.height) withFont:self.font];
                             }
                         }
 
@@ -319,14 +313,10 @@
 
                         if (repeat)
                         {
-                            if (matchNewLine.range.location < postCharacters.length) {
-                                [[postCharacters substringFromIndex:matchNewLine.range.location + matchNewLine.range.length] drawAtPoint:drawPoint withFont:self.font];
-                            }
+                            [[postCharacters substringFromIndex:matchNewLine.range.location + matchNewLine.range.length] drawAtPoint:drawPoint withFont:self.font];
                         }
 
-                        if (matchNewLine.range.location < postCharacters.length) {
-                            drawPoint = CGPointMake(drawPoint.x + [[postCharacters substringFromIndex:matchNewLine.range.location + matchNewLine.range.length] sizeWithFont:self.font].width, drawPoint.y);
-                        }
+                        drawPoint = CGPointMake(drawPoint.x + [[postCharacters substringFromIndex:matchNewLine.range.location + matchNewLine.range.length] sizeWithFont:self.font].width, drawPoint.y);
                     }
                     else
                     {
@@ -467,6 +457,7 @@
 {
     UITouch *touch = event.allTouches.anyObject;
     CGPoint touchPoint = [touch locationInView:self];
+    __block BOOL foundWord = NO;
 
     if ([touchLocations count] == 0)
     {
@@ -480,6 +471,7 @@
          if (CGRectContainsPoint(touchZone, touchPoint))
          {
              //A touchable word is found
+             foundWord = YES;
 
              NSString *url = [touchWords objectAtIndex:idx];
 
@@ -526,8 +518,8 @@
 
              }
          }
-         else
-         {
+
+         if (idx == [touchWords count]-1 && !foundWord) {
              [super touchesEnded:touches withEvent:event];
          }
      }];

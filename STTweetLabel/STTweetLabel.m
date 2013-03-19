@@ -257,7 +257,9 @@
 
                             if (repeat)
                             {
-                                [[postCharacters substringToIndex:matchNewLine.range.location] drawAtPoint:CGPointMake(drawPoint.x + self.shadowOffset.width, drawPoint.y + self.shadowOffset.height) withFont:self.font];
+                                if (matchNewLine.range.location < postCharacters.length) {
+                                    [[postCharacters substringToIndex:matchNewLine.range.location] drawAtPoint:CGPointMake(drawPoint.x + self.shadowOffset.width, drawPoint.y + self.shadowOffset.height) withFont:self.font];
+                                }
                             }
                         }
 
@@ -265,7 +267,9 @@
 
                         if (repeat)
                         {
-                            [[postCharacters substringToIndex:matchNewLine.range.location] drawAtPoint:drawPoint withFont:self.font];
+                            if (matchNewLine.range.location < postCharacters.length) {
+                                [[postCharacters substringToIndex:matchNewLine.range.location] drawAtPoint:drawPoint withFont:self.font];
+                            }
                         }
 
                         float originX = 0.0;
@@ -305,7 +309,9 @@
 
                             if (repeat)
                             {
-                                [[postCharacters substringFromIndex:matchNewLine.range.location + matchNewLine.range.length] drawAtPoint:CGPointMake(drawPoint.x + self.shadowOffset.width, drawPoint.y + self.shadowOffset.height) withFont:self.font];
+                                if (matchNewLine.range.location < postCharacters.length) {
+                                    [[postCharacters substringFromIndex:matchNewLine.range.location + matchNewLine.range.length] drawAtPoint:CGPointMake(drawPoint.x + self.shadowOffset.width, drawPoint.y + self.shadowOffset.height) withFont:self.font];
+                                }
                             }
                         }
 
@@ -313,10 +319,14 @@
 
                         if (repeat)
                         {
-                            [[postCharacters substringFromIndex:matchNewLine.range.location + matchNewLine.range.length] drawAtPoint:drawPoint withFont:self.font];
+                            if (matchNewLine.range.location < postCharacters.length) {
+                                [[postCharacters substringFromIndex:matchNewLine.range.location + matchNewLine.range.length] drawAtPoint:drawPoint withFont:self.font];
+                            }
                         }
 
-                        drawPoint = CGPointMake(drawPoint.x + [[postCharacters substringFromIndex:matchNewLine.range.location + matchNewLine.range.length] sizeWithFont:self.font].width, drawPoint.y);
+                        if (matchNewLine.range.location < postCharacters.length) {
+                            drawPoint = CGPointMake(drawPoint.x + [[postCharacters substringFromIndex:matchNewLine.range.location + matchNewLine.range.length] sizeWithFont:self.font].width, drawPoint.y);
+                        }
                     }
                     else
                     {

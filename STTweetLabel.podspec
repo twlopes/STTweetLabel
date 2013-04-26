@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "STTweetLabel-twlopes"
-  s.version      = "2.2.1"
+  s.version      = "2.2.2"
   s.summary      = "A custom UILabel view controller for iOS with certain words tappable like Twitter. Forked by twlopes."
   s.homepage     = "https://github.com/twlopes/STTweetLabel"
 

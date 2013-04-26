@@ -151,8 +151,10 @@
                     }
                     else
                     {
-                        originX = [[sizeLines objectAtIndex:indexOrigin] floatValue];
-                        indexOrigin++;
+                        if (indexOrigin < [sizeLines count]) {
+                            originX = [[sizeLines objectAtIndex:indexOrigin] floatValue];
+                            indexOrigin++;
+                        }
                     }
 
                     drawPoint = CGPointMake(originX, drawPoint.y + sizeWord.height + _lineSpace);
@@ -296,8 +298,10 @@
                         }
                         else
                         {
-                            originX = [[sizeLines objectAtIndex:indexOrigin] floatValue];
-                            indexOrigin++;
+                            if (indexOrigin < [sizeLines count]) {
+                                originX = [[sizeLines objectAtIndex:indexOrigin] floatValue];
+                                indexOrigin++;
+                            }
                         }
 
                         drawPoint = CGPointMake(originX, drawPoint.y + sizeWord.height + _lineSpace);
